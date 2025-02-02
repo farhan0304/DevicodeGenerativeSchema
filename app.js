@@ -21,11 +21,13 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 import schemaRoute from "./routes/schemaGenerate.routes.js";
+import userRoute from "./routes/login.routes.js";
 
 app.get("/",(req,res)=>{
     return res.status(200).json({"message":"Hello from server"});
 })
 
+app.use("/api/v1/user",userRoute);
 app.use("/api/v1/schema",schemaRoute);
 
 
