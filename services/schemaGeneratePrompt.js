@@ -1,12 +1,20 @@
-import {openAI_API_key,prompt} from "./apiKey.js";
-import { ChatOpenAI } from "@langchain/openai";
+import {prompt,jsonSchema} from "./prompts.js";
 import { PromptTemplate } from "@langchain/core/prompts";
+import { ChatFireworks } from "@langchain/community/chat_models/fireworks";
 
 
-const langchainGenerative = async () =>{
-    const model = new ChatOpenAI({ model: "gpt-4o-mini",temperature: 0.5, apiKey:openAI_API_key});
+const langchainGenerative = async (schemaName,details) =>{
+
+    const model = new ChatFireworks({
+        model: "accounts/fireworks/models/llama-v3p2-3b-instruct",
+        temperature: 0.5
+      });
+
     const schemaTemplate = PromptTemplate.fromTemplate(prompt);
-    return await schemaTemplate.invoke({ schemaName: "FestAtendee",details:"Generate Relevant fields and methodList with jwt disabled" }); 
+    const schemaPrompt =  await schemaTemplate.invoke({ schemaName,details}); 
+    const modelWithStructuredSchema = model.withStructuredOutput(jsonSchema);
+
+    return await modelWithStructuredSchema.invoke(schemaPrompt);
 }
 
 export {

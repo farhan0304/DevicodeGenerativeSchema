@@ -12,6 +12,7 @@
   "author": "Farhan Nizam",
   "license": "ISC",
   "dependencies": {
+    "@langchain/community": "^0.3.28",
     "@langchain/core": "^0.3.37",
     "@langchain/openai": "^0.4.2",
     "body-parser": "^1.20.3",
