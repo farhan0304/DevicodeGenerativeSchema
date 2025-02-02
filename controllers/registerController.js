@@ -23,7 +23,8 @@ const generateAccessToken = (req,res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: "none",
     }
     return res.status(200)
     .cookie("accessToken",authToken,options)
@@ -34,11 +35,13 @@ const generateAccessToken = (req,res) => {
     ) );
 }
 
+
 const logoutUser = (req,res)=>{
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: "none",
     }
 
     return res
