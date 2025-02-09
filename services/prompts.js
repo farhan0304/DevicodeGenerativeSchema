@@ -99,7 +99,7 @@ const jsonSchema = {
                 "type": { "type": "string", "enum": ["SAME_SCHEMA", "DIFFERENT_SCHEMA"] },
                 "related_schema_name": { "type": ["string", "null"] },
                 "field_name": { "type": "string" },
-                "location": { "type": "string", "enum": ["body", "query", "params"] },
+                "location": { "type": "string", "enum": ["body", "query"] },
                 "attribute_name": { "type": "string" },
                 "related_schema_id": { "type": ["string", "null"] }
               },
