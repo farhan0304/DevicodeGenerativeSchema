@@ -1,23 +1,11 @@
 import {prompt,jsonSchema} from "./prompts.js";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { ChatFireworks } from "@langchain/community/chat_models/fireworks";
+import { getModelInstance } from "./modelinstance.js";
 
 
 const langchainGenerative = async (modelType,schemaName,details) =>{
-    let model;
-    if(String(modelType) == "deepseek"){
-        model = new ChatFireworks({
-            model: "accounts/fireworks/models/deepseek-v3",
-            temperature: 0.5
-        })
-    }else{
-        model = new ChatFireworks({
-            model: "accounts/fireworks/models/llama-v3p2-3b-instruct",
-            temperature: 0.5
-        });
-    }
-
-
+    
+    const model = getModelInstance(modelType);
 
     const schemaTemplate = PromptTemplate.fromTemplate(prompt);
     const schemaPrompt =  await schemaTemplate.invoke({ schemaName,details}); 

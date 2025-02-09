@@ -21,7 +21,7 @@ const generateSchema = asyncHandler(async (req,res) => {
     }
     let schemaData;
     if(!modelType){
-        schemaData = await langchainGenerative("llama",schemaName,schemaDetails);
+        schemaData = await langchainGenerative("llama3.2",schemaName,schemaDetails);
     }
     else{
         schemaData = await langchainGenerative(modelType,schemaName,schemaDetails);
