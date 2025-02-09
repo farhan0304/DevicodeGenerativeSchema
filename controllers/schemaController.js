@@ -9,7 +9,7 @@ const healthCheck = (req,res)=>{
 }
 
 const generateSchema = asyncHandler(async (req,res) => {
-    const {schemaName,details} = req.body;
+    const {modelType,schemaName,details} = req.body;
     if(!schemaName){
         throw new ApiError(401,"Schema Name is required");
     }
@@ -19,7 +19,13 @@ const generateSchema = asyncHandler(async (req,res) => {
     }else{
         schemaDetails = details;
     }
-    const schemaData = await langchainGenerative(schemaName,schemaDetails);
+    let schemaData;
+    if(!modelType){
+        schemaData = await langchainGenerative("llama",schemaName,schemaDetails);
+    }
+    else{
+        schemaData = await langchainGenerative(modelType,schemaName,schemaDetails);
+    }
     if(!schemaData){
         throw new ApiError(400,"Something went wrong in getting Schema Data")
     }
