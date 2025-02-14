@@ -20,7 +20,7 @@ const prompt = `Generate a JSON object for a schema with the following attribute
     "methodsList": [
       {{
         "method": "CREATE",
-        "route_name": "/create",
+        "route_name": "create",
         "restrictions": [],
         "sendToken": false,
         "tokenName": "",
@@ -28,7 +28,7 @@ const prompt = `Generate a JSON object for a schema with the following attribute
       }},
       {{
         "method": "READ",
-        "route_name": "/login",
+        "route_name": "login",
         "restrictions": [
           {{
             "type": "SAME_SCHEMA",
